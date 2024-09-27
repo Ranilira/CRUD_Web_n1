@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <title>Editar Usuário</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Editar Usuário</h2>
+        <form action="{{ url_for('edit', user_id=user['id']) }}" method="POST">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ user['nome'] }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ user['login'] }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <select class="form-select" id="status" name="status" required>
+                    <option value="ativo" {% if user['status'] == 1 %}selected{% endif %}>Ativo</option>
+                    <option value="inativo" {% if user['status'] == 0 %}selected{% endif %}>Inativo</option>
+                </select>
+            </div>
+            <div class="mb-3"></div>
+                <label for="modified" class="form-label">Última Modificação</label>
+                <input type="text" class="form-control" id="modified" name="modified" value="{{ user['modified'] }}" readonly>
+            </div>
+            <button type="submit" class="btn btn-primary">Atualizar</button>
+        </form>
+    </div>
+</body>
+</html>
